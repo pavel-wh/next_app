@@ -1,14 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import MainLayout from 'layouts/main.layout';
 
 export default function Index() {
   return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <MainLayout>
       <main>
         <nav>
           <Link href="/about">
@@ -55,6 +51,6 @@ export default function Index() {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
+    </MainLayout>
   );
 }

@@ -1,4 +1,6 @@
 import Router from 'next/router';
+import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Posts() {
   const clickHandler = () => {
@@ -11,6 +13,9 @@ export default function Posts() {
       <button onClick={() => Router.push('/posts/1')}>
         Go to Post #1 page
       </button>
+      <Link href="/posts/1">
+        <button>Go to Post #1 page</button>
+      </Link>
     </React.Fragment>
   );
 }
