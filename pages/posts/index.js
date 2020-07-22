@@ -45,7 +45,6 @@ export default function Posts({ posts: serverPosts }) {
             <Link
               href={{
                 pathname: `/posts/[id]`,
-                query: ``,
               }}
               as={`/posts/${post.id}`}
             >
@@ -61,7 +60,7 @@ export default function Posts({ posts: serverPosts }) {
 Posts.getInitialProps = async (ctx) => {
   if (!ctx.req) {
     return {
-      post: null,
+      posts: null,
     };
   }
   const response = await fetch('http://localhost:4200/posts');
