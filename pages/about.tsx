@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import MainLayout from 'layouts/main.layout';
-export default function About({ title }) {
+import { About } from 'interfaces/about';
+
+export default function About({ title }: About) {
   return (
     <MainLayout title={title}>
       <h1>{title}</h1>

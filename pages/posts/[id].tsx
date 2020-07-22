@@ -2,8 +2,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import MainLayout from 'layouts/main.layout.js';
+import { MyPost } from 'interfaces/post';
+import { NextPageContext } from 'next';
 
-export default function Post({ post /*post: serverPost*/ }) {
+interface PostPageProps {
+  post: MyPost;
+}
+
+export default function Post({ post /*post: serverPost*/ }: PostPageProps) {
   /* При комбинировании фронтенда и бэкенда */
   const router = useRouter();
   // const [post, setPost] = useState(serverPost);
@@ -56,10 +62,17 @@ export default function Post({ post /*post: serverPost*/ }) {
 //   };
 // };
 
+interface PostNextPageContext extends NextPageContext {
+  query: {
+    id: string;
+  };
+}
+
 /* При киспользовании запросов только на бэкенде */
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps(ctx: PostNextPageContext) {
   const response = await fetch(`http://localhost:4200/posts/${ctx.query.id}`);
-  const post = await response.json();
+  ctx.query.id;
+  const post: MyPost = await response.json();
   return {
     props: {
       post,

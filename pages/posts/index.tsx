@@ -3,8 +3,14 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
 import MainLayout from 'layouts/main.layout.js';
+import { MyPost } from 'interfaces/post';
+import { NextPageContext } from 'next';
 
-export default function Posts({ posts: serverPosts }) {
+interface PostsPageProps {
+  posts: MyPost[];
+}
+
+export default function Posts({ posts: serverPosts }: PostsPageProps) {
   const [posts, setPosts] = useState(serverPosts);
 
   useEffect(() => {
@@ -57,14 +63,14 @@ export default function Posts({ posts: serverPosts }) {
   );
 }
 
-Posts.getInitialProps = async (ctx) => {
+Posts.getInitialProps = async (ctx: NextPageContext) => {
   if (!ctx.req) {
     return {
       posts: null,
     };
   }
   const response = await fetch('http://localhost:4200/posts');
-  const posts = await response.json();
+  const posts: MyPost[] = await response.json();
   return {
     posts,
   };

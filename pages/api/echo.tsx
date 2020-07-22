@@ -1,6 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function echo(req, res) {
+import { NextApiRequest, NextApiResponse } from 'next';
+
+interface MessageNextApiRequest extends NextApiRequest {
+  query: {
+    message?: string;
+  };
+}
+
+export default function echo(req: MessageNextApiRequest, res: NextApiResponse) {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.end(
