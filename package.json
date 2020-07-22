@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "mock": "json-server -w db.json -p 4200 -d 500",
+    "serve": "concurrently 'npm run dev' 'npm run mock'"
   },
   "dependencies": {
     "next": "9.4.4",
