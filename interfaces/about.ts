@@ -1,3 +1,3 @@
-export interface About {
+export interface AboutType {
   title: string;
 }

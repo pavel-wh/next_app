@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import MainLayout from 'layouts/main.layout';
-import { About } from 'interfaces/about';
+import { AboutType } from 'interfaces/about';
 
-export default function About({ title }: About) {
+export default function About({ title }: AboutType) {
   return (
     <MainLayout title={title}>
       <h1>{title}</h1>
@@ -14,7 +14,7 @@ export default function About({ title }: About) {
 }
 
 About.getInitialProps = async () => {
-  const responnse = await fetch('http://localhost:4200/about');
+  const responnse = await fetch(`${process.env.API_URL}/about`);
   const data = await responnse.json();
 
   return {

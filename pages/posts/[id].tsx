@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import MainLayout from 'layouts/main.layout.js';
+import MainLayout from 'layouts/main.layout';
 import { MyPost } from 'interfaces/post';
 import { NextPageContext } from 'next';
 
@@ -17,7 +17,7 @@ export default function Post({ post /*post: serverPost*/ }: PostPageProps) {
   // useEffect(() => {
   //   async function load() {
   //     const response = await fetch(
-  //       `http://localhost:4200/posts/${router.query.id}`
+  //       `${process.env.API_URL}/posts/${router.query.id}`
   //     );
   //     const data = await response.json();
   //     setPost(data);
@@ -55,7 +55,7 @@ export default function Post({ post /*post: serverPost*/ }: PostPageProps) {
 //       post: null,
 //     };
 //   }
-//   const response = await fetch(`http://localhost:4200/posts/${ctx.query.id}`);
+//   const response = await fetch(`${process.env.API_URL}/posts/${ctx.query.id}`);
 //   const post = await response.json();
 //   return {
 //     post,
@@ -70,7 +70,7 @@ interface PostNextPageContext extends NextPageContext {
 
 /* При киспользовании запросов только на бэкенде */
 export async function getServerSideProps(ctx: PostNextPageContext) {
-  const response = await fetch(`http://localhost:4200/posts/${ctx.query.id}`);
+  const response = await fetch(`${process.env.API_URL}/posts/${ctx.query.id}`);
   ctx.query.id;
   const post: MyPost = await response.json();
   return {
