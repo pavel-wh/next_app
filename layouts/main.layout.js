@@ -19,7 +19,6 @@ export default function MainLayout({ children, title = 'Next App' }) {
         <Link href="/about">
           <a>About</a>
         </Link>
-        <br></br>
         <Link href={'/posts'}>
           <a>Posts</a>
         </Link>
@@ -34,12 +33,15 @@ export default function MainLayout({ children, title = 'Next App' }) {
           right: 0;
           background: darkblue;
           display: flex;
-          justify-content: flex-start;
+          justify-content: space-around;
           align-items: center;
         }
         nav a {
           padding: 25px;
           color: #fff;
+        }
+        main {
+          padding-top: 60px;
         }
       `}</style>
     </React.Fragment>

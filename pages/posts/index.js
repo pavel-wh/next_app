@@ -3,19 +3,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
 
-export default function Posts() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function load() {
-      const response = await fetch('http://localhost:4200/posts');
-      const json = await response.json();
-      setPosts(json);
-    }
-
-    load();
-  }, []);
-
+export default function Posts({ posts }) {
   const clickHandler = () => {
     Router.push('/about');
   };
@@ -29,7 +17,29 @@ export default function Posts() {
       <Link href="/posts/1">
         <button>Go to Post #1 page</button>
       </Link>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link
+              href={{
+                pathname: `/posts/[id]`,
+                query: ``,
+              }}
+              as={`/posts/${post.id}`}
+            >
+              <a>{post.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </React.Fragment>
   );
 }
+
+Posts.getInitialProps = async (ctx) => {
+  const response = await fetch('http://localhost:4200/posts');
+  const posts = await response.json();
+  return {
+    posts,
+  };
+};
