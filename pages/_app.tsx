@@ -1,9 +1,11 @@
 import NextNprogress from 'nextjs-progressbar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import 'assets/scss/main.scss';
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
+      <CssBaseline />
       <NextNprogress
         options={{
           color: '#29D',

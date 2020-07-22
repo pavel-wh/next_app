@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MainLayout from 'layouts/main.layout';
 import { MyPost } from 'interfaces/post';
 import { NextPageContext } from 'next';
+import Button from '@material-ui/core/Button';
 
 interface PostsPageProps {
   posts: MyPost[];
@@ -37,12 +38,20 @@ export default function Posts({ posts: serverPosts }: PostsPageProps) {
   return (
     <MainLayout>
       <h1>Posts Page!</h1>
-      <button onClick={clickHandler}>Go to About page</button>
-      <button onClick={() => Router.push('/posts/1')}>
+      <Button variant="contained" color="primary" onClick={clickHandler}>
+        Go to About page
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => Router.push('/posts/1')}
+      >
         Go to Post #1 page
-      </button>
+      </Button>
       <Link href="/posts/1">
-        <button>Go to Post #1 page</button>
+        <Button variant="contained" color="primary">
+          Go to Post #1 page
+        </Button>
       </Link>
       <ul>
         {posts.map((post) => (
