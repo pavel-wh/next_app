@@ -1,18 +1,23 @@
 import Link from 'next/link';
 import MainLayout from 'layouts/main.layout';
-export default function About({ title }) {
+import { AboutType } from 'interfaces/about';
+import Button from '@material-ui/core/Button';
+
+export default function About({ title }: AboutType) {
   return (
     <MainLayout title={title}>
       <h1>{title}</h1>
       <Link href="/">
-        <button>Go back to home</button>
+        <Button variant="contained" color="primary">
+          Go back to home
+        </Button>
       </Link>
     </MainLayout>
   );
 }
 
 About.getInitialProps = async () => {
-  const responnse = await fetch('http://localhost:4200/about');
+  const responnse = await fetch(`${process.env.API_URL}/about`);
   const data = await responnse.json();
 
   return {
