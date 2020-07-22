@@ -2,8 +2,30 @@ import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
+import MainLayout from 'layouts/main.layout.js';
 
-export default function Posts({ posts }) {
+export default function Posts({ posts: serverPosts }) {
+  const [posts, setPosts] = useState(serverPosts);
+
+  useEffect(() => {
+    async function load() {
+      const response = await fetch(`http://localhost:4200/posts`);
+      const data = await response.json();
+      setPosts(data);
+    }
+    if (!serverPosts) {
+      load();
+    }
+  }, []);
+
+  if (!posts) {
+    return (
+      <MainLayout>
+        <p>Loading...</p>
+      </MainLayout>
+    );
+  }
+
   const clickHandler = () => {
     Router.push('/about');
   };
@@ -37,6 +59,11 @@ export default function Posts({ posts }) {
 }
 
 Posts.getInitialProps = async (ctx) => {
+  if (!ctx.req) {
+    return {
+      post: null,
+    };
+  }
   const response = await fetch('http://localhost:4200/posts');
   const posts = await response.json();
   return {
