@@ -15,5 +15,8 @@
       "title": "Python",
       "body": "WoW it's amazing!!!"
     }
-  ]
+  ],
+  "about": {
+    "title": "About Page"
+  }
 }

@@ -23,8 +23,14 @@ export default function MainLayout({ children, title = 'Next App' }) {
           <a>Posts</a>
         </Link>
       </nav>
-      <main>{children}</main>
+      <main className="container">{children}</main>
       <style jsx>{`
+        main {
+          position: relative;
+          min-width: 100vw;
+          min-height: calc(100vh - 60px);
+          margin-top: 60px;
+        }
         nav {
           position: fixed;
           height: 60px;
@@ -37,11 +43,11 @@ export default function MainLayout({ children, title = 'Next App' }) {
           align-items: center;
         }
         nav a {
-          padding: 25px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
           color: #fff;
-        }
-        main {
-          padding-top: 60px;
         }
       `}</style>
     </React.Fragment>

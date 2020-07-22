@@ -5,52 +5,11 @@ import MainLayout from 'layouts/main.layout';
 export default function Index() {
   return (
     <MainLayout>
-      <main>
-        <nav>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-          <br></br>
-          <Link href={'/posts'}>
-            <a>Posts</a>
-          </Link>
-        </nav>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
+      <h1 className="title">Welcome to Next.js!</h1>
 
-      <footer></footer>
+      <style jsx>{``}</style>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-        }
-
-        footer {
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+      <style jsx global>{``}</style>
     </MainLayout>
   );
 }

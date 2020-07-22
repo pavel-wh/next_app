@@ -30,7 +30,7 @@ export default function Posts({ posts: serverPosts }) {
     Router.push('/about');
   };
   return (
-    <React.Fragment>
+    <MainLayout>
       <h1>Posts Page!</h1>
       <button onClick={clickHandler}>Go to About page</button>
       <button onClick={() => Router.push('/posts/1')}>
@@ -53,7 +53,7 @@ export default function Posts({ posts: serverPosts }) {
           </li>
         ))}
       </ul>
-    </React.Fragment>
+    </MainLayout>
   );
 }
 

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import MainLayout from 'layouts/main.layout.js';
 
-export default function Post({ post: serverPost }) {
+export default function Post({ post /*post: serverPost*/ }) {
   /* При комбинировании фронтенда и бэкенда */
-  // const router = useRouter();
+  const router = useRouter();
   // const [post, setPost] = useState(serverPost);
 
   // useEffect(() => {
@@ -41,6 +41,7 @@ export default function Post({ post: serverPost }) {
     </MainLayout>
   );
 }
+
 /* При комбинировании фронтенда и бэкенда */
 // Post.getInitialProps = async (ctx) => {
 //   if (!ctx.req) {
