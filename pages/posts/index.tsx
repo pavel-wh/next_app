@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import MainLayout from 'layouts/main.layout';
 import { MyPost } from 'interfaces/post';
@@ -13,6 +13,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+
+import Pagination from '@material-ui/lab/Pagination';
 
 interface PostsPageProps {
   posts: MyPost[];
@@ -33,24 +35,30 @@ const useStyles = makeStyles((theme: Theme) =>
     card: {
       maxWidth: 345,
     },
+    padding: {
+      marginTop: 40,
+      marginBottom: 40,
+    },
   })
 );
 
 export default function Posts({ posts }: PostsPageProps) {
   const classes = useStyles();
 
-  const [spacing, setSpacing] = React.useState<GridSpacing>(2);
+  const [page, setPage] = useState(1);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpacing(Number((event.target as HTMLInputElement).value) as GridSpacing);
-  };
+  const itemsInPage = 6;
 
-  return (
-    <MainLayout>
-      <h1>Posts Page</h1>
-      <Grid container className={classes.root} spacing={2}>
+  const [currentRange, setCurrentRange] = useState({
+    start: 0,
+    end: 5,
+  });
+
+  const renderPage = function (posts: MyPost[]) {
+    return (
+      <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Grid container justify="flex-start" spacing={spacing}>
+          <Grid container justify="flex-start" spacing={2}>
             {posts.map((post: MyPost) => (
               <Grid key={post.id} item>
                 <Card className={classes.card}>
@@ -64,7 +72,7 @@ export default function Posts({ posts }: PostsPageProps) {
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
-                        {post.title}
+                        {post.title} + {post.id}
                       </Typography>
                       <Typography
                         variant="body2"
@@ -92,6 +100,34 @@ export default function Posts({ posts }: PostsPageProps) {
             ))}
           </Grid>
         </Grid>
+      </Grid>
+    );
+  };
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setPage(newPage);
+    setCurrentRange({
+      start: newPage * itemsInPage - itemsInPage,
+      end: newPage * itemsInPage,
+    });
+  };
+
+  return (
+    <MainLayout>
+      <h1>Posts Page</h1>
+      {renderPage(posts.slice(currentRange.start, currentRange.end))}
+      <Grid container justify="center" spacing={2} className={classes.padding}>
+        <Pagination
+          count={Math.ceil(posts.length / itemsInPage)}
+          page={page}
+          color="primary"
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChangePage}
+        />
       </Grid>
     </MainLayout>
   );
