@@ -4,7 +4,7 @@ import MainLayout from 'layouts/main.layout';
 import { MyPost } from 'interfaces/post';
 import { NextPageContext } from 'next';
 import Button from '@material-ui/core/Button';
-
+import Router from 'next/router';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -61,7 +61,12 @@ export default function Posts({ posts }: PostsPageProps) {
           <Grid container justify="flex-start" spacing={2}>
             {posts.map((post: MyPost) => (
               <Grid key={post.id} item>
-                <Card className={classes.card}>
+                <Card
+                  className={classes.card}
+                  onClick={() =>
+                    Router.push(`/posts/[id]`, `/posts/${post.id}`)
+                  }
+                >
                   <CardActionArea>
                     <CardMedia
                       component="img"
