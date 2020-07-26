@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 export default function About({ title }: AboutType) {
   return (
     <MainLayout title={title}>
-      <h1>{title}</h1>
+      <h1>About page</h1>
       <Link href="/">
         <Button variant="contained" color="primary">
           Go back to home
