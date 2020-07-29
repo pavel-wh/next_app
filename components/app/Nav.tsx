@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    link: {
+      color: 'white',
+      cursor: 'pointer',
+      textDecoration: 'none',
+    },
   })
 );
 
@@ -44,7 +49,9 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            InfoSpores
+            <Link href="/">
+              <a className={classes.link}>InfoSpores</a>
+            </Link>
           </Typography>
           <Hidden lgUp>
             <IconButton
@@ -77,6 +84,16 @@ export default function ButtonAppBar() {
                   <LinkMaterial underline="none">Posts</LinkMaterial>
                 </Link>
               </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link href="/sign-up">
+                  <LinkMaterial underline="none">Sign Up</LinkMaterial>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link href="/sign-in">
+                  <LinkMaterial underline="none">Sign In</LinkMaterial>
+                </Link>
+              </MenuItem>
             </Menu>
           </Hidden>
           <Hidden mdDown>
@@ -88,6 +105,12 @@ export default function ButtonAppBar() {
             </Link>
             <Link href="/posts">
               <Button color="inherit">Posts</Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button color="inherit">Sign Up</Button>
+            </Link>
+            <Link href="/sign-in">
+              <Button color="inherit">Sign In</Button>
             </Link>
           </Hidden>
         </Toolbar>

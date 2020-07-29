@@ -16,11 +16,11 @@ export default function About({ title }: AboutType) {
   );
 }
 
-About.getInitialProps = async () => {
-  const responnse = await fetch(`${process.env.API_URL}/about`);
-  const data = await responnse.json();
+// About.getInitialProps = async () => {
+//   const responnse = await fetch(`${process.env.API_URL}/about`);
+//   const data = await responnse.json();
 
-  return {
-    title: data.title,
-  };
-};
+//   return {
+//     title: data.title,
+//   };
+// };
